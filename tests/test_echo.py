@@ -87,6 +87,7 @@ class TestEcho(unittest.TestCase):
         self.assertIsInstance(
             result, argparse.ArgumentParser,
             "create_parser() function is not returning a parser object")
+        pass
 
     #
     # Students: add more parser tests here
@@ -113,6 +114,7 @@ class TestEcho(unittest.TestCase):
             self.module.main(args)
         assert output, "The program did not print anything."
         self.assertEqual(output[0], "hello world")
+        pass
 
     #
     # Students: add more cmd line options tests here.
