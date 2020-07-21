@@ -180,10 +180,7 @@ class TestEcho(unittest.TestCase):
             self.module.main(args)
         assert output, "The program did not print anything."
         self.assertEqual(output[0], "hello world")            
-    #
-    # Students: add more cmd line options tests here.
-    #
-
+   
 
 if __name__ == '__main__':
     unittest.main()
