@@ -92,6 +92,14 @@ class TestEcho(unittest.TestCase):
     #
     # Students: add more parser tests here
     #
+    def test_help(self):
+        """Check if main() function prints anything at all"""
+        args = ['-h']
+        stdout, stderr = run_capture(self.module.__file__, args)
+        with open('USAGE') as f:
+            usage = f.read()
+        self.assertEqual('\n'.join(stdout) + '\n', usage)
+    
 
     def test_echo(self):
         """Check if main() function prints anything at all"""
@@ -115,8 +123,63 @@ class TestEcho(unittest.TestCase):
             self.module.main(args)
         assert output, "The program did not print anything."
         self.assertEqual(output[0], "hello world")
-       
 
+    def test_lower_long(self):
+        """Check if long option '--lower' performs lowercasing"""
+        args = ["--lower", "HELLO WORLD"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "hello world")
+      
+    def test_title_short(self):
+        """Check if short option '-t' performs titlecasing"""
+        args = ["-t", "HELLO WORLD"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "Hello World")
+
+
+    def test_title_long(self):
+        """Check if long option '--title' performs titlecasing"""
+        args = ["--title", "HELLO WORLD"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "Hello World")
+
+    def test_no_args(self):
+        """Check if no_args  does not transform text"""
+        args = ["HELLO WORLD"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "HELLO WORLD")
+
+    def test_upper_short(self):
+        """Check if upper option '-u' performs uppercasing"""
+        args = ["-u", "HELLO WORLD"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "HELLO WORLD") 
+
+    def test_upper_long(self):
+        """Check if upper option '--upper' performs uppercasing"""
+        args = ["--upper", "HELLO WORLD"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "HELLO WORLD")
+
+    def test_all_options(self):
+        """Check for all options '-ult' performs all options"""
+        args = ["-ult", "Hello World"]
+        with Capturing() as output:
+            self.module.main(args)
+        assert output, "The program did not print anything."
+        self.assertEqual(output[0], "hello world")            
     #
     # Students: add more cmd line options tests here.
     #
