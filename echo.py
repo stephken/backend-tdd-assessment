@@ -6,15 +6,15 @@ __author__ = "???"
 
 
 import sys
-import unittest
 import argparse
 
 
 def create_parser():
     """Returns an instance of argparse.ArgumentParser"""
-    parser = argparse.ArgumentParser()
-    parser.add_argument('text', help ='text to echo')
-    parser.add_argument('-l', action='store_true', help ='transform txt to lowercase' )
+    parser = argparse.ArgumentParser(description="transforming input text")
+    parser.add_argument('text', help='text to echo')
+    parser.add_argument('-l', action='store_true',
+                        help='transform txt to lowercase')
     return parser
 
 
@@ -23,10 +23,10 @@ def main(args):
     parser = create_parser()
     args = parser.parse_args(args)
 
-    if  args.l: 
+    if args.l:
         print(args.txt.lower())
-    else: 
-        print(args.txt) 
+    else:
+        print(args.txt)
     return
 
 

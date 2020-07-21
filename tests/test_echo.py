@@ -107,6 +107,7 @@ class TestEcho(unittest.TestCase):
             "The program is not performing simple echo"
             )
 
+
     def test_lower_short(self):
         """Check if short option '-l' performs lowercasing"""
         args = ["-l", "HELLO WORLD"]
@@ -114,7 +115,7 @@ class TestEcho(unittest.TestCase):
             self.module.main(args)
         assert output, "The program did not print anything."
         self.assertEqual(output[0], "hello world")
-        pass
+       
 
     #
     # Students: add more cmd line options tests here.
